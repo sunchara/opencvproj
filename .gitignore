@@ -1,0 +1,12 @@
+
+!/inih/cpp
+
+/Testing
+
+**Make**
+!CMakeLists.txt
+**make**
+gvc
+DisplayImage
+**.a
+**.so
