@@ -26,7 +26,7 @@ void mouseEventcalback(int event, int y, int x, int flags, void* userdata)
         //std::cerr<<"Mousemoved  "<<x<<' '<<y<<std::endl;
     }
 }
-cv::Mat drawBlur(const cv::Mat & frame)//, int x, int y)
+void drawBlur(const cv::Mat & frame)//, int x, int y)
 {
   int n=0;
   double sum[3]={0,0,0};
@@ -53,7 +53,7 @@ cv::Mat drawBlur(const cv::Mat & frame)//, int x, int y)
 
       }
     }
-    return blur;
+    blur.copyTo(frame);
 }
 int main(int argc, char *argv[])
 {
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 
         if(moved){
             moved = false;
-            frame = drawBlur(frame);
+            drawBlur(frame);
           }
         imshow("vid",frame);
         if(cv::waitKey(1) == 27)
