@@ -46,7 +46,7 @@ void drawBlur(const cv::Mat & frame)//, int x, int y)
             sum[2]+=frame.at<cv::Vec3b>(i,j)[2];
             ++n;
           }
-
+          
           blur.at<cv::Vec3b>(r,c)[0] = sum[0]/(double)n;
           blur.at<cv::Vec3b>(r,c)[1] = sum[1]/(double)n;
           blur.at<cv::Vec3b>(r,c)[2] = sum[2]/(double)n;
