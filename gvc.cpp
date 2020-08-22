@@ -11,7 +11,15 @@ static int X,Y;// pos of mouse
 static bool moved = false;// is moved
 static int radius; //radius of the blured circle in pixels
 static int range; //kernel is (2*range+1,2*range+1) matrix
+/*
+kernel :=
+ 1 ... 1
+ . .   .
+ .   . .
+ 1 ... 1
+* 1/(2*range+1)^2
 
+*/
 inline bool isInRadius(int x,int y)
 {
   return (x-X)*(x-X)+(y-Y)*(y-Y)<=radius*radius;
@@ -41,9 +49,10 @@ void drawBlur(const cv::Mat & frame)
       if(isInRadius(r,c))
       {
         n=0; //number of components to sum
-        sum[0]=sum[1]=sum[2]=0;// 3 chanels to summ
+        sum[0]=sum[1]=sum[2]=0;// 3 chanels to sum
 
         //filtering
+        //if pixel is out of frame - it doesn't contribute
         for(int i=std::max(r-range, 0);i<=std::min(r+range,frame.rows);++i)
           for(int j=std::max(c-range, 0);j<=std::min(c+range,frame.cols);++j)
           {
